@@ -1,53 +1,43 @@
-
 import java.util.*;
-public class NextPalindrome{
-    
-    static boolean check(int Num){
-        int rem,sum=0;
-        int temp=Num;
-        while(Num>0)
-        {
-            rem=Num%10;
-            sum=(sum*10)+rem;
-            Num/=10;
-        }
-        if( temp==sum)
-        return true;
-        else
-        return false;
-    }
-    static boolean prime(int prime_num)
+public class Nextpal{
+    static boolean isprime(int num)
     {
-        int su=0;
-        for (int i=1;i<=prime_num;i++)
+        int c=0;
+        for (int i=1;i<=num;i++)
         {
-            if (prime_num%i==0)
+            if (num%i==0)
             {
-            su++;
+                c++;
             }
         }
-        if (su==2)
-        {
-            return true;
-        }
-        else
-        return false;
+        return c==2;
     }
-    
-    static int fun(int i)
+    static boolean ispalindrome(int num)
     {
-    
-        if(prime(i) && check(i))
-        return i;
-        else
-        return fun(i+1);
-    }
-    public static void main(String args [])
-    {
-        Scanner sc=new Scanner(System.in);
-        int num=sc.nextInt();
+        int temp=num,res=0,t;
         
-        System.out.println(fun(num+1));
-
+        while(num>0)
+        {
+            t=num%10;
+            res= res*10 +t;
+            num/=10;
+        }
+        return temp==res;
+    }
+    static void fun(int num){
+    while (true)
+    {
+        if( isprime(num) && ispalindrome(num))
+        {
+            System.out.println(num);
+            break;
+        }
+        num++;
+    }
+    }
+    public static void main(String args []){
+        Scanner sc=new Scanner (System.in);
+        int num=sc.nextInt();
+        fun(num+1);
     }
 }
